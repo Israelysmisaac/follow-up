@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node
     
 # Configure apt
 ENV DEBIAN_FRONTEND=noninteractive
