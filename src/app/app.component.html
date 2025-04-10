@@ -1,0 +1,59 @@
+<div class="min-h-screen bg-gray-100">
+  <!-- Mobile-friendly responsive navigation -->
+  <nav class="bg-blue-600 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Desktop navigation -->
+      <div class="flex justify-between h-16">
+        <div class="flex items-center justify-between w-full">
+          <div class="flex-shrink-0 flex items-center">
+            <span class="text-white text-xl font-bold truncate">{{ title }}</span>
+          </div>
+          
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button type="button" class="text-gray-200 hover:text-white focus:outline-none" (click)="toggleMobileMenu()">
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path *ngIf="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path *ngIf="isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Desktop menu links -->
+          <div class="hidden md:ml-6 md:flex md:space-x-4 lg:space-x-8">
+            <a routerLink="/today-followups" routerLinkActive="text-white border-b-2 border-white" class="text-gray-200 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Today's Follow-ups
+            </a>
+            <a routerLink="/customers" routerLinkActive="text-white border-b-2 border-white" class="text-gray-200 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              All Customers
+            </a>
+            <a routerLink="/customer/new" routerLinkActive="text-white border-b-2 border-white" class="text-gray-200 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Add New Customer
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile menu, show/hide based on mobile menu state -->
+      <div class="md:hidden" *ngIf="isMobileMenuOpen">
+        <div class="pt-2 pb-3 space-y-1">
+          <a routerLink="/today-followups" routerLinkActive="bg-blue-700 text-white" class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:text-white hover:bg-blue-700" (click)="toggleMobileMenu()">
+            Today's Follow-ups
+          </a>
+          <a routerLink="/customers" routerLinkActive="bg-blue-700 text-white" class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:text-white hover:bg-blue-700" (click)="toggleMobileMenu()">
+            All Customers
+          </a>
+          <a routerLink="/customer/new" routerLinkActive="bg-blue-700 text-white" class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:text-white hover:bg-blue-700" (click)="toggleMobileMenu()">
+            Add New Customer
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+    <div class="py-4 sm:py-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

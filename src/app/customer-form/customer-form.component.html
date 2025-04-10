@@ -1,0 +1,93 @@
+<div class="max-w-3xl mx-auto bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6">
+    <h2 class="text-xl sm:text-2xl font-bold leading-7 text-gray-900">
+      {{ isEditMode ? 'Edit Customer' : 'Add New Customer' }}
+    </h2>
+  </div>
+  
+  <div class="border-t border-gray-200">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="px-4 py-5 sm:p-6">
+      <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+        <!-- Name Field -->
+        <div class="col-span-1 sm:col-span-3">
+          <label for="name" class="block text-sm font-medium text-gray-700">Customer Name</label>
+          <div class="mt-1">
+            <input type="text" id="name" formControlName="name" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full text-sm border-gray-300 rounded-md">
+          </div>
+          <div *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched" class="text-red-500 text-xs mt-1">
+            Name is required
+          </div>
+        </div>
+
+        <!-- Contact Info Field -->
+        <div class="col-span-1 sm:col-span-3">
+          <label for="contactInfo" class="block text-sm font-medium text-gray-700">Contact Information</label>
+          <div class="mt-1">
+            <input type="text" id="contactInfo" formControlName="contactInfo" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full text-sm border-gray-300 rounded-md">
+          </div>
+          <div *ngIf="customerForm.get('contactInfo')?.invalid && customerForm.get('contactInfo')?.touched" class="text-red-500 text-xs mt-1">
+            Contact information is required
+          </div>
+        </div>
+
+        <!-- Last Visit Date Field -->
+        <div class="col-span-1 sm:col-span-3">
+          <label for="lastVisitDate" class="block text-sm font-medium text-gray-700">Last Visit Date</label>
+          <div class="mt-1">
+            <input type="date" 
+                   id="lastVisitDate" 
+                   formControlName="lastVisitDate" 
+                   [max]="today"
+                   class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full text-sm border-gray-300 rounded-md">
+          </div>
+          <div class="text-xs text-gray-500 mt-1">
+            Default set to today
+          </div>
+        </div>
+
+        <!-- Next Followup Date Field -->
+        <div class="col-span-1 sm:col-span-3">
+          <label for="nextFollowupDate" class="block text-sm font-medium text-gray-700">Next Follow-up Date</label>
+          <div class="mt-1">
+            <input type="date" 
+                   id="nextFollowupDate" 
+                   formControlName="nextFollowupDate" 
+                   [min]="minFollowupDate"
+                   class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full text-sm border-gray-300 rounded-md">
+          </div>
+          <div *ngIf="customerForm.get('nextFollowupDate')?.errors?.['followupDateIsToday']" class="text-red-500 text-xs mt-1">
+            Follow-up date cannot be today, please select a future date
+          </div>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <button type="button" (click)="setFollowupDate(7)" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              +7 Days
+            </button>
+            <button type="button" (click)="setFollowupDate(14)" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              +14 Days
+            </button>
+            <button type="button" (click)="setFollowupDate(30)" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+              +1 Month
+            </button>
+          </div>
+        </div>
+
+        <!-- Notes Field -->
+        <div class="col-span-1 sm:col-span-6">
+          <label for="notes" class="block text-sm font-medium text-gray-700">Notes</label>
+          <div class="mt-1">
+            <textarea id="notes" formControlName="notes" rows="3" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full text-sm border border-gray-300 rounded-md"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-col sm:flex-row sm:justify-end space-y-3 sm:space-y-0 sm:space-x-3">
+        <button type="button" routerLink="/customers" class="w-full sm:w-auto inline-flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Cancel
+        </button>
+        <button type="submit" [disabled]="customerForm.invalid" class="w-full sm:w-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" [ngClass]="{'opacity-50 cursor-not-allowed': customerForm.invalid}">
+          {{ isEditMode ? 'Update' : 'Save' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
