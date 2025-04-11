@@ -1,0 +1,9 @@
+{
+	"name": "Angular19 Client",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"forwardPorts": [
+		"4200"
+	]
+}
