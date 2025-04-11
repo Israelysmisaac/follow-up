@@ -7,5 +7,14 @@
 		"4200"
 	],
 	"postCreateCommand": "npm install",
-	"postStartCommand": "npm run start"
+	"customizations": {
+		"hide": {
+			"tasks": [
+				{
+					"alias": "run",
+					"command": "npm run start"
+				}
+			]
+		}
+	}
 }
