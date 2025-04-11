@@ -3,11 +3,11 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"runArgs": ["-p=4200:4200"],
 	"forwardPorts": [
 		"4200"
 	],
 	"postCreateCommand": "npm install",
+	"postStartCommand": "nohup npm run start > output.log 2>&1 &",
 	"customizations": {
 		"hide": {
 			"tasks": [
