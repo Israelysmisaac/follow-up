@@ -13,16 +13,6 @@
 	"workspaceFolder": "/workspace",
 	"workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/workspace,type=bind,consistency=cached",
 	"forwardPorts": [
-		4200
-	],
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"Angular.ng-template",
-				"esbenp.prettier-vscode",
-				"rvest.vs-code-prettier-eslint",
-				"Gruntfuggly.todo-tree"
-			]
-		}
-	}
+		"4200"
+	]
 }
