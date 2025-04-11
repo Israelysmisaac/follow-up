@@ -5,5 +5,7 @@
 	},
 	"forwardPorts": [
 		"4200"
-	]
+	],
+	"postCreateCommand": "npm install",
+	"postStartCommand": "npm run start"
 }
