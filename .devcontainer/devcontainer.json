@@ -1,9 +1,28 @@
 {
-	"name": "Basic Node.js",
-	"dockerComposeFile": "./docker-compose.yml",
-	"service": "dev",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-	"remoteUser": "node",
-	"postCreateCommand": "npm install -g @angular/cli",
-	"customizations" : {}
-  }
+	"name": "Angular19 Client",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"mounts": [
+		{
+			"type": "volume",
+			"source": "devcontainer_node_modules",
+			"target": "${containerWorkspaceFolder}/node_modules"
+		}
+	],
+	"workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/workspace,type=bind,consistency=cached",
+	"forwardPorts": [
+		4200
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Angular.ng-template",
+				"esbenp.prettier-vscode",
+				"rvest.vs-code-prettier-eslint",
+				"Gruntfuggly.todo-tree"
+			]
+		}
+	}
+}
