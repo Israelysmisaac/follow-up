@@ -3,6 +3,7 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"runArgs": ["-p=4200:4200"],
 	"forwardPorts": [
 		"4200"
 	],
