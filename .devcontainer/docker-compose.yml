@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dev:
+    build:
+      context: .               # Path to the directory containing the Dockerfile
+      dockerfile: Dockerfile    # Name of the Dockerfile (if different from default "Dockerfile")
+    ports:
+      - "4201:4200"
+    volumes:
+      - .:/workspace:cached
