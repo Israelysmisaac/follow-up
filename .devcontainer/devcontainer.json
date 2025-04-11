@@ -1,6 +1,6 @@
 {
 	"name": "Angular & Node (latest LTS)",
-	"dockerFile": "Dockerfile",
+	"build": { "dockerfile": "Dockerfile" },
 	// Uncomment the next line if you want to publish any ports.
 	"appPort": [4200],
 	// Uncomment the next line if you want to add in default container specific settings.json values
